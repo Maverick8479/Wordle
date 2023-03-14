@@ -13,7 +13,7 @@ background = pygame.image.load('WORDLE.png')
 # game settings
 WIDTH = 600
 HEIGHT = 800
-FPS = 60
+FPS = 30
 title = "Wordle"
 
 TILESIZE = 80
