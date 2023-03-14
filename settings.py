@@ -1,3 +1,4 @@
+import pygame
 # COLORS (r, g, b)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -8,7 +9,7 @@ BLUE = (0, 0, 255)
 RED = (255, 0, 0)
 YELLOW = (200, 200, 0)
 BGCOLOUR = DARKGREY
-
+background = pygame.image.load('WORDLE.png')
 # game settings
 WIDTH = 600
 HEIGHT = 800

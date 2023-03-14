@@ -9,6 +9,7 @@ class Game:
     def __init__(self):
         pygame.init()
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
+        background = pygame.image.load('WORDLE.png')
         pygame.display.set_caption(title)
         self.clock = pygame.time.Clock()
         self.create_word_list()
@@ -63,6 +64,8 @@ class Game:
 
     def draw(self):
         self.screen.fill(BGCOLOUR)
+        #background
+        self.screen.blit(background,(0,0))
         # display the not enough letters text
         if self.not_enough_letters:
             self.timer += 1
@@ -86,6 +89,8 @@ class Game:
         move = 3
         screen_copy = self.screen.copy()
         screen_copy.fill(BGCOLOUR)
+        #background
+        self.screen.blit(background,(0,0))
         for row in self.tiles:
             for tile in row:
                 if row != self.tiles[self.current_row]:
@@ -126,6 +131,8 @@ class Game:
                         tile.height += size * 2
                         surface = pygame.Surface((tile.width, tile.height))
                         surface.fill(BGCOLOUR)
+                        #background
+                        self.screen.blit(background,(0,0))
                         self.screen.blit(surface, (tile.x, tile.y))
                         tile.draw(self.screen)
                         pygame.display.flip()
@@ -140,6 +147,8 @@ class Game:
         while True:
             surface = pygame.Surface((tile.width + 5, tile.height + 5))
             surface.fill(BGCOLOUR)
+            #background
+            self.screen.blit(background,(0,0))
             screen_copy.blit(surface, (tile.x, tile.y))
             self.screen.blit(screen_copy, (0, 0))
             if self.flip:
@@ -195,11 +204,11 @@ class Game:
                         if self.text == self.word or self.current_row + 1 == 6:
                             # player lose, lose message is sent
                             if self.text != self.word:
-                                self.end_screen_text = UIElement(100, 700, f"THE WORD WAS: {self.word}", WHITE)
+                                self.end_screen_text = UIElement(100, 700, f"THE WORD WAS: {self.word}", RED)
 
                             # player win, send win message
                             else:
-                                self.end_screen_text = UIElement(100, 700, "YOU GUESSED RIGHT", WHITE)
+                                self.end_screen_text = UIElement(100, 700, "YOU GUESSED RIGHT", GREEN)
 
                             # restart the game
                             self.playing = False
@@ -222,7 +231,7 @@ class Game:
                         self.box_animation()
 
     def end_screen(self):
-        play_again = UIElement(85, 750, "PRESS ENTER TO PLAY AGAIN", WHITE, 30)
+        play_again = UIElement(85, 750, "PRESS ENTER TO PLAY AGAIN", BLACK, 30)
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -234,6 +243,8 @@ class Game:
                         return
 
             self.screen.fill(BGCOLOUR)
+            #background
+            self.screen.blit(background,(0,0))
             self.draw_tiles()
             self.end_screen_text.fade_in()
             self.end_screen_text.draw(self.screen)
