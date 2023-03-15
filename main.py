@@ -13,7 +13,7 @@ class Game:
         pygame.display.set_caption(title)
         self.clock = pygame.time.Clock()
         self.create_word_list()
-        self.letters_text = UIElement(100, 70, "Not Enough Letters", WHITE)
+        self.letters_text = UIElement(100, 700, "Not Enough Letters", WHITE)
 
     def create_word_list(self):
         with open("words.txt", "r") as file:

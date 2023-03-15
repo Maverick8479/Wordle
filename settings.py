@@ -1,6 +1,6 @@
 import pygame
 # COLORS (r, g, b)
-WHITE = (255, 255, 255)
+WHITE = (0, 0, 0)
 BLACK = (0, 0, 0)
 DARKGREY = (40, 40, 40)
 LIGHTGREY = (100, 100, 100)
@@ -13,7 +13,7 @@ background = pygame.image.load('WORDLE.png')
 # game settings
 WIDTH = 600
 HEIGHT = 800
-FPS = 30
+FPS = 120
 title = "Wordle"
 
 TILESIZE = 80
