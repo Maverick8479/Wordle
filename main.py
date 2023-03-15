@@ -69,7 +69,7 @@ class Game:
                 tile.draw(self.screen)
 
     def draw(self):
-        self.screen.fill(BGCOLOUR)
+        # self.screen.fill(BGCOLOUR)
         #background
         self.screen.blit(background,(0,0))
         # display the not enough letters text
@@ -109,9 +109,9 @@ class Game:
         amount_move = 4
         move = 3
         screen_copy = self.screen.copy()
-        screen_copy.fill(BGCOLOUR)
+        # screen_copy.fill(BGCOLOUR)
         #background
-        self.screen.blit(background,(0,0))
+        screen_copy.blit(background,(0,0))
         for row in self.tiles:
             for tile in row:
                 if row != self.tiles[self.current_row]:
@@ -151,9 +151,8 @@ class Game:
                         tile.width += size * 2
                         tile.height += size * 2
                         surface = pygame.Surface((tile.width, tile.height))
-                        surface.fill(BGCOLOUR)
+                        surface.fill((250, 236, 232))
                         #background
-                        self.screen.blit(background,(0,0))
                         self.screen.blit(surface, (tile.x, tile.y))
                         tile.draw(self.screen)
                         pygame.display.flip()
@@ -167,9 +166,10 @@ class Game:
 
         while True:
             surface = pygame.Surface((tile.width + 5, tile.height + 5))
-            surface.fill(BGCOLOUR)
+            # surface.fill(BGCOLOUR)
             #background
             self.screen.blit(background,(0,0))
+            # screen_copy.blit(background,(0,0))
             screen_copy.blit(surface, (tile.x, tile.y))
             self.screen.blit(screen_copy, (0, 0))
             if self.flip:
@@ -277,7 +277,7 @@ class Game:
                         pygame.quit()
                         quit(0)
 
-            self.screen.fill(BGCOLOUR)
+            # self.screen.fill(BGCOLOUR)
             #background
             self.screen.blit(background,(0,0))
             self.draw_tiles()
