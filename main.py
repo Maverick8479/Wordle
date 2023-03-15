@@ -14,6 +14,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.create_word_list()
         self.letters_text = UIElement(100, 700, "Not Enough Letters", WHITE)
+        self.not_in_list = UIElement(MARGIN_X, 700, "Not in word list", WHITE )
 
     def create_word_list(self):
         with open("words.txt", "r") as file:
@@ -28,6 +29,7 @@ class Game:
         self.create_tiles()
         self.flip = True
         self.not_enough_letters = False
+        self.not_in_word_list = False
         self.timer = 0
 
     def create_tiles(self):
@@ -75,15 +77,30 @@ class Game:
                 self.timer = 0
         else:
             self.letters_text.fade_out()
+
+        
+        if self.not_in_word_list:
+            self.timer += 1
+            self.not_in_list.fade_in()
+            if self.timer > 90:
+                self.not_in_word_list = False
+                self.timer = 0
+                self.clearRow()
+        else:
+            self.not_in_list.fade_out()
+        self.not_in_list.draw(self.screen)
         self.letters_text.draw(self.screen)
 
         self.draw_tiles()
 
         pygame.display.flip()
 
-    def row_animation(self):
+    def row_animation(self, str="not enough letters"):
         # row shaking if not enough letters is inputted
-        self.not_enough_letters = True
+        if str == "not enough letters":
+            self.not_enough_letters = True
+        else:
+            self.not_in_word_list = True
         start_pos = self.tiles[0][0].x
         amount_move = 4
         move = 3
@@ -187,6 +204,9 @@ class Game:
                     break
             # reveal animation
             self.reveal_animation(self.tiles[self.current_row][i], colour)
+    
+    def clearRow(self):
+        self.text = ""
 
     def events(self):
         for event in pygame.event.get():
@@ -196,7 +216,7 @@ class Game:
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
-                    if len(self.text) == 5:
+                    if len(self.text) == 5 and self.text in self.words_list:
                         # check all letters
                         self.check_letters()
 
@@ -219,8 +239,11 @@ class Game:
                         self.text = ""
 
                     else:
-                        # row animation, not enough letters message
-                        self.row_animation()
+                        if len(self.text) != 5:
+                            #   row animation, not enough letters message
+                            self.row_animation()
+                        else:
+                            self.row_animation("not in word list")
 
                 elif event.key == pygame.K_BACKSPACE:
                     self.text = self.text[:-1]
