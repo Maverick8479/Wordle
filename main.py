@@ -14,7 +14,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.create_word_list()
         self.letters_text = UIElement(100, 700, "Not Enough Letters", BLACK)
-        self.not_in_list = UIElement(MARGIN_X, 700, "Not in word list", BLACK )
+        self.not_in_list = UIElement(110, 700, "Not in word list", BLACK )
 
     def create_word_list(self):
         with open("words.txt", "r") as file:
@@ -219,6 +219,9 @@ class Game:
                 quit(0)
 
             if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    quit(0)
                 if event.key == pygame.K_RETURN:
                     if len(self.text) == 5 and self.text in self.words_list:
                         # check all letters
@@ -228,11 +231,11 @@ class Game:
                         if self.text == self.word or self.current_row + 1 == 6:
                             # player lose, lose message is sent
                             if self.text != self.word:
-                                self.end_screen_text = UIElement(100, 700, f"THE WORD WAS: {self.word}", RED)
+                                self.end_screen_text = UIElement(100, 680, f"THE WORD WAS: {self.word}", RED)
 
                             # player win, send win message
                             else:
-                                self.end_screen_text = UIElement(100, 700, "YOU GUESSED RIGHT", GREEN)
+                                self.end_screen_text = UIElement(100, 680, "YOU GUESSED RIGHT", GREEN)
 
                             # restart the game
                             self.playing = False
@@ -258,7 +261,8 @@ class Game:
                         self.box_animation()
 
     def end_screen(self):
-        play_again = UIElement(85, 750, "PRESS ENTER TO PLAY AGAIN", BLACK, 30)
+        play_again = UIElement(85, 725, "PRESS ENTER TO PLAY AGAIN", BLACK, 30)
+        exit = UIElement(85, 750, "PRESS ESCAPE TO EXIT", BLACK, 30)
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -269,6 +273,10 @@ class Game:
                     if event.key == pygame.K_RETURN:
                         return
 
+                    if event.key == pygame.K_ESCAPE:
+                        pygame.quit()
+                        quit(0)
+
             self.screen.fill(BGCOLOUR)
             #background
             self.screen.blit(background,(0,0))
@@ -277,6 +285,8 @@ class Game:
             self.end_screen_text.draw(self.screen)
             play_again.fade_in()
             play_again.draw(self.screen)
+            exit.fade_in()
+            exit.draw(self.screen)
             pygame.display.flip()
 
 
