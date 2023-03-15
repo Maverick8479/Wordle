@@ -13,8 +13,8 @@ class Game:
         pygame.display.set_caption(title)
         self.clock = pygame.time.Clock()
         self.create_word_list()
-        self.letters_text = UIElement(100, 700, "Not Enough Letters", WHITE)
-        self.not_in_list = UIElement(MARGIN_X, 700, "Not in word list", WHITE )
+        self.letters_text = UIElement(100, 700, "Not Enough Letters", BLACK)
+        self.not_in_list = UIElement(MARGIN_X, 700, "Not in word list", BLACK )
 
     def create_word_list(self):
         with open("words.txt", "r") as file:
@@ -22,7 +22,7 @@ class Game:
         
         for i, word in enumerate(self.words_list):
             self.words_list[i] = word.upper()
-        print(self.words_list)
+        # print(self.words_list)
 
     def new(self):
         self.word = random.choice(self.words_list).upper()

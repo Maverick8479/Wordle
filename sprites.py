@@ -18,7 +18,7 @@ class Tile:
 
     def draw(self, screen):
         if self.colour is None:
-            pygame.draw.rect(screen, WHITE, (self.x, self.y, self.width, self.height), 2)
+            pygame.draw.rect(screen, BLUE, (self.x, self.y, self.width, self.height), 2)
         else:
             pygame.draw.rect(screen, self.colour, (self.x, self.y, self.width, self.height))
 
