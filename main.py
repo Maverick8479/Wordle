@@ -19,6 +19,10 @@ class Game:
     def create_word_list(self):
         with open("words.txt", "r") as file:
             self.words_list = file.read().splitlines()
+        
+        for i, word in enumerate(self.words_list):
+            self.words_list[i] = word.upper()
+        print(self.words_list)
 
     def new(self):
         self.word = random.choice(self.words_list).upper()
