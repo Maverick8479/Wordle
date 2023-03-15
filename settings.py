@@ -1,6 +1,6 @@
 import pygame
 # COLORS (r, g, b)
-WHITE = (0, 0, 0)
+WHITE = (100, 100, 100)
 BLACK = (0, 0, 0)
 DARKGREY = (40, 40, 40)
 LIGHTGREY = (100, 100, 100)

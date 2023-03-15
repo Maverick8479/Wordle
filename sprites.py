@@ -13,7 +13,7 @@ class Tile:
 
     def create_font(self):
         font = pygame.font.SysFont("Consolas", self.font_size)
-        self.render_letter = font.render(self.letter, True, WHITE)
+        self.render_letter = font.render(self.letter, True, BLACK)
         self.font_width, self.font_height = font.size(self.letter)
 
     def draw(self, screen):
