@@ -30,8 +30,7 @@ class Game:
         # print(self.words_list)
 
     def new(self):
-        # self.word = random.choice(self.words_list).upper()
-        self.word = "BELLE"
+        self.word = random.choice(self.words_list).upper()
         print(self.word)
         self.text = ""
         self.attempt_list = []
@@ -290,7 +289,6 @@ class Game:
                             break
                         
                         self.attempt_list.append(self.text)
-                        print(self.attempt_list)
                         self.current_row += 1
                         self.text = ""
 
@@ -313,7 +311,6 @@ class Game:
             #   row animation, not enough letters message
             self.row_animation(Errors.NOT_ENOUGH_LETTERS)
         elif self.text in self.attempt_list:
-            print("Here")
             self.row_animation(Errors.REPEATED_WORD)
         else:
             self.row_animation(Errors.NOT_IN_WORD_LIST)
